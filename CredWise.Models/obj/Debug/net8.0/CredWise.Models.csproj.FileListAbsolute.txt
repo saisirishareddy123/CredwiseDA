@@ -1,0 +1,11 @@
+C:\CredWise\BackEnd\CredWise\CredWise.Models\bin\Debug\net8.0\CredWise.Models.deps.json
+C:\CredWise\BackEnd\CredWise\CredWise.Models\bin\Debug\net8.0\CredWise.Models.dll
+C:\CredWise\BackEnd\CredWise\CredWise.Models\bin\Debug\net8.0\CredWise.Models.pdb
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\CredWise.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\CredWise.Models.AssemblyInfoInputs.cache
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\CredWise.Models.AssemblyInfo.cs
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\CredWise.Models.csproj.CoreCompileInputs.cache
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\CredWise.Models.dll
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\refint\CredWise.Models.dll
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\CredWise.Models.pdb
+C:\CredWise\BackEnd\CredWise\CredWise.Models\obj\Debug\net8.0\ref\CredWise.Models.dll

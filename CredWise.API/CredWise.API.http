@@ -1,0 +1,6 @@
+@CredWise.API_HostAddress = http://localhost:5090
+
+GET {{CredWise.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

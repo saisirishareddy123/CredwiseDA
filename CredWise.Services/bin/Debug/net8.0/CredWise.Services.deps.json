@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "CredWise.Services/1.0.0": {
+        "dependencies": {
+          "CredWise.Models": "1.0.0",
+          "CredWise.Rules": "1.0.0"
+        },
+        "runtime": {
+          "CredWise.Services.dll": {}
+        }
+      },
+      "CredWise.Models/1.0.0": {
+        "runtime": {
+          "CredWise.Models.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "CredWise.Rules/1.0.0": {
+        "dependencies": {
+          "CredWise.Models": "1.0.0"
+        },
+        "runtime": {
+          "CredWise.Rules.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CredWise.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CredWise.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CredWise.Rules/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

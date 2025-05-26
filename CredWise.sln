@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CredWise.API", "CredWise.API\CredWise.API.csproj", "{B4E13C6B-9E90-474B-AAE8-C5D512BB22B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CredWise.Models", "CredWise.Models\CredWise.Models.csproj", "{2D81AB36-8E8A-475D-8BA0-B241B8010CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CredWise.Services", "CredWise.Services\CredWise.Services.csproj", "{D2D63E75-C003-4B6D-989F-0AD1CEC9DDD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CredWise.Rules", "CredWise.Rules\CredWise.Rules.csproj", "{22A6FBD2-F8A0-4584-8EDE-6FB28F975045}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4E13C6B-9E90-474B-AAE8-C5D512BB22B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4E13C6B-9E90-474B-AAE8-C5D512BB22B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4E13C6B-9E90-474B-AAE8-C5D512BB22B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4E13C6B-9E90-474B-AAE8-C5D512BB22B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D81AB36-8E8A-475D-8BA0-B241B8010CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D81AB36-8E8A-475D-8BA0-B241B8010CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D81AB36-8E8A-475D-8BA0-B241B8010CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D81AB36-8E8A-475D-8BA0-B241B8010CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D63E75-C003-4B6D-989F-0AD1CEC9DDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D63E75-C003-4B6D-989F-0AD1CEC9DDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D63E75-C003-4B6D-989F-0AD1CEC9DDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D63E75-C003-4B6D-989F-0AD1CEC9DDD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22A6FBD2-F8A0-4584-8EDE-6FB28F975045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22A6FBD2-F8A0-4584-8EDE-6FB28F975045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22A6FBD2-F8A0-4584-8EDE-6FB28F975045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22A6FBD2-F8A0-4584-8EDE-6FB28F975045}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E300694-1BDD-4D8B-9327-52A2F5632E0E}
+	EndGlobalSection
+EndGlobal
