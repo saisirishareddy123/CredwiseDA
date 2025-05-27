@@ -15,8 +15,12 @@ namespace CredWise.API.Rules
 
         public void Evaluate(LoanRuleContext context)
         {
-            var salary = context.Request.BankStatements
-                .Where(t => t.Type == "Credit" && t.Description.Contains("Salary"))
+            var salaryCredits = context.Request.BankStatements
+        .Where(t => t.Type == "CREDIT")
+        .ToList();
+
+            var salary = salaryCredits
+                .Where(t => IsSalaryTransaction(t.Description))
                 .Sum(t => t.Amount);
 
             if (salary < MinSalary)
@@ -25,6 +29,13 @@ namespace CredWise.API.Rules
                 context.RejectionReason = $"Salary ({salary}) is below minimum required ({MinSalary})";
             }
             context.CriteriaResults.Add($"Salary Check: {(salary >= MinSalary ? "Passed" : "Failed")}");
+
+        }
+        private bool IsSalaryTransaction(string description)
+        {
+            var keywords = new[] { "salary", "income", "payroll" };
+            return keywords.Any(k =>
+                description.ToLower().Contains(k));
         }
     }
 }

@@ -33,6 +33,7 @@ C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\CredWise.API.Assembly
 C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\CredWise.API.csproj.CoreCompileInputs.cache
 C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\CredWise.API.MvcApplicationPartsAssemblyInfo.cs
 C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\CredWise.API.MvcApplicationPartsAssemblyInfo.cache
+C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\CredWise.API.sourcelink.json
 C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\scopedcss\bundle\CredWise.API.styles.css
 C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\staticwebassets.build.json
 C:\CredWise\BackEnd\CredWise\CredWise.API\obj\Debug\net8.0\staticwebassets.development.json

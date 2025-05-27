@@ -8,6 +8,7 @@ C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\CredWise.Rules.Gene
 C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\CredWise.Rules.AssemblyInfoInputs.cache
 C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\CredWise.Rules.AssemblyInfo.cs
 C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\CredWise.Rules.csproj.CoreCompileInputs.cache
+C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\CredWise.Rules.sourcelink.json
 C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\CredWise.69775C63.Up2Date
 C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\CredWise.Rules.dll
 C:\CredWise\BackEnd\CredWise\CredWise.Rules\obj\Debug\net8.0\refint\CredWise.Rules.dll

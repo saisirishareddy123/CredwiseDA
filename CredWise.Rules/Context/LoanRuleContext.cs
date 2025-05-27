@@ -13,7 +13,7 @@ namespace CredWise.Rules.Context
         public LoanApplicationRequest Request { get; }
         public bool IsApproved { get; set; } = true;
         public decimal MaxEligibleAmount { get; set; }
-        public string RejectionReason { get; set; }
+        public string? RejectionReason { get; set; } // Changed to nullable
         public List<string> CriteriaResults { get; } = new();
 
         public LoanRuleContext(LoanApplicationRequest request)

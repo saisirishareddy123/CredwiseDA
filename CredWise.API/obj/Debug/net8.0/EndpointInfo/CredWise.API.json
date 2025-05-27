@@ -41,6 +41,18 @@
         }
       }
     },
+    "/api/loan/test-data": {
+      "get": {
+        "tags": [
+          "LoanDecision"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -84,35 +96,50 @@
   "components": {
     "schemas": {
       "BankTransaction": {
+        "required": [
+          "amount",
+          "date",
+          "description",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "date": {
             "type": "string",
-            "format": "date-time"
+            "format": "date"
           },
           "amount": {
+            "minimum": 0.01,
             "type": "number",
             "format": "double"
           },
           "type": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^(CREDIT|DEBIT)$",
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "ExistingLoan": {
+        "required": [
+          "isActive",
+          "loanId",
+          "monthlyEmi"
+        ],
         "type": "object",
         "properties": {
           "loanId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9]+$",
+            "type": "string"
           },
           "monthlyEmi": {
+            "minimum": 0.01,
             "type": "number",
             "format": "double"
           },
@@ -123,22 +150,29 @@
         "additionalProperties": false
       },
       "LoanApplicationRequest": {
+        "required": [
+          "bankStatements",
+          "requestedAmount",
+          "userId"
+        ],
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9]+$",
+            "type": "string"
           },
           "requestedAmount": {
+            "minimum": 1,
             "type": "number",
             "format": "double"
           },
           "bankStatements": {
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BankTransaction"
-            },
-            "nullable": true
+            }
           },
           "existingLoans": {
             "type": "array",

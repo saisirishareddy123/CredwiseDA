@@ -12,7 +12,7 @@ namespace CredWise.Services.Service.Implementations
 
         public LoanDecisionService(IEnumerable<ILoanRule> rules)
         {
-            _rules = rules;
+            _rules = rules; 
         }
 
         public LoanDecisionResponse EvaluateLoan(LoanApplicationRequest request)

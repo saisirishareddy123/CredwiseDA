@@ -10,7 +10,8 @@ namespace CredWise.Models.Root
     {
         public bool IsApproved { get; set; }
         public decimal ApprovedAmount { get; set; }
-        public string RejectionReason { get; set; }
+        public string? RejectionReason { get; set; } // Changed to nullable
         public List<string> CriteriaResults { get; set; } = new();
+        public string Status => IsApproved ? "APPROVED" : "REJECTED";
     }
 }
