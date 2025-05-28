@@ -2,45 +2,42 @@
 using CredWise.Models;
 using CredWise.Services.Interface;
 using CredWise.Models.Root;
-using CredWise.Services.DummyData;
-
+//using CredWise.Services.DummyData;
+using System.Net;
+using Microsoft.Extensions.Logging;
+ 
 namespace CredWise.API.Controllers
 {
     [ApiController]
-    [Route("api/loan")]
+    [Route("api/[controller]")]
     public class LoanDecisionController : ControllerBase
     {
-        private readonly ILoanDecisionService _decisionService;
+        private readonly ILoanDecisionService _loanService;
 
-        public LoanDecisionController(ILoanDecisionService decisionService)
+        public LoanDecisionController(ILoanDecisionService loanService)
         {
-            _decisionService = decisionService;
+            _loanService = loanService;
+        }
+
+        [HttpPost("bankstatement")]
+        public IActionResult UploadBankStatement(string userId, [FromBody] List<BankTransaction> transactions)
+        {
+            _loanService.UploadBankStatement(userId, transactions);
+            return Ok("Bank statement uploaded.");
+        }
+
+        [HttpGet("bankstatement/{userId}")]
+        public IActionResult GetBankStatement(string userId)
+        {
+            var data = _loanService.GetBankStatement(userId);
+            return data.Any() ? Ok(data) : NotFound("No statement found.");
         }
 
         [HttpPost("evaluate")]
         public IActionResult EvaluateLoan([FromBody] LoanApplicationRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (request?.BankStatements == null || !request.BankStatements.Any())
-            {
-                return BadRequest("Bank statements are required");
-            }
-
-            var response = _decisionService.EvaluateLoan(request);
-
-             
-            return Ok(response);
-        }
-
-        [HttpGet("test-data")]
-        public IActionResult GetTestData()
-        {
-            var testData = DummyDataProvider.GetAllTestCases(); // Changed method name
-            return Ok(testData);
+            var result = _loanService.EvaluateLoan(request);
+            return Ok(result);
         }
     }
 }

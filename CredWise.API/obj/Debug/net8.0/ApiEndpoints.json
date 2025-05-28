@@ -1,8 +1,45 @@
 [
   {
     "ContainingType": "CredWise.API.Controllers.LoanDecisionController",
+    "Method": "UploadBankStatement",
+    "RelativePath": "api/LoanDecision/bankstatement",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "transactions",
+        "Type": "System.Collections.Generic.List\u00601[[CredWise.Models.Root.BankTransaction, CredWise.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CredWise.API.Controllers.LoanDecisionController",
+    "Method": "GetBankStatement",
+    "RelativePath": "api/LoanDecision/bankstatement/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CredWise.API.Controllers.LoanDecisionController",
     "Method": "EvaluateLoan",
-    "RelativePath": "api/loan/evaluate",
+    "RelativePath": "api/LoanDecision/evaluate",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -13,16 +50,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "CredWise.API.Controllers.LoanDecisionController",
-    "Method": "GetTestData",
-    "RelativePath": "api/loan/test-data",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {

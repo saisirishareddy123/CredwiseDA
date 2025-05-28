@@ -4,21 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CredWise.Models.Root;
+using CredWise.Rules.Interface;
+using System.Collections.Generic;
 
 namespace CredWise.Rules.Context
 {
-    // This class holds the shared data between rules during evaluation
     public class LoanRuleContext
     {
-        public LoanApplicationRequest Request { get; }
-        public bool IsApproved { get; set; } = true;
-        public decimal MaxEligibleAmount { get; set; }
-        public string? RejectionReason { get; set; } // Changed to nullable
-        public List<string> CriteriaResults { get; } = new();
+        private readonly List<ILoanRule> _rules;
 
-        public LoanRuleContext(LoanApplicationRequest request)
+        public LoanRuleContext(List<ILoanRule> rules)
         {
-            Request = request;
+            _rules = rules;
+        }
+
+        public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<BankTransaction> statements)
+        {
+            foreach (var rule in _rules)
+            {
+                var result = rule.Evaluate(request, statements);
+                if (result != null && result.Status == "Rejected")
+                    return result;
+
+                if (result != null && result.Status == "Partially Approved")
+                    return result;
+            }
+
+            return new LoanDecisionResponse
+            {
+                Status = "Approved",
+                Message = "All checks passed, loan approved.",
+                ApprovedAmount = request.RequestedAmount
+            };
+        }
+
+        public LoanDecisionResponse Evaluate(LoanApplicationRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }
