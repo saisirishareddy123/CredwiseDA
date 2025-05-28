@@ -2,20 +2,17 @@ using CredWise.Services.Interface;
 using CredWise.Services.Service.Implementations;
 using CredWise.Rules.Interface;
 using CredWise.Rules.Rules.Implementations;
-using CredWise.Models;
-using CredWise.API.Rules;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 
-// Register core services
+// Register service
 builder.Services.AddScoped<ILoanDecisionService, LoanDecisionService>();
 
-// Register all rules
+// Register rule implementations as a list
 builder.Services.AddSingleton<ILoanRule, LoanAmountRule>();
 builder.Services.AddSingleton<ILoanRule, ExistingLoanRule>();
-builder.Services.AddSingleton<ILoanRule, MinimumSalaryRule>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();

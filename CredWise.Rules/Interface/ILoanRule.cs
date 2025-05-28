@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CredWise.Models.Root;
 using CredWise.Rules.Context;
 
 namespace CredWise.Rules.Interface
 {
     public interface ILoanRule
     {
-        void Evaluate(LoanRuleContext context);
+        LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<BankTransaction> bankStatements);
     }
 }
 
