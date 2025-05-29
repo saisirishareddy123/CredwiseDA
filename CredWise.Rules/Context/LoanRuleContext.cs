@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CredWise.Models.Root;
 using CredWise.Rules.Interface;
-using System.Collections.Generic;
+using CredWise.Models;
 
 namespace CredWise.Rules.Context
 {
@@ -18,11 +18,11 @@ namespace CredWise.Rules.Context
             _rules = rules;
         }
 
-        public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<BankTransaction> statements)
+        public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<Models.BankTransaction> bankstatements)
         {
             foreach (var rule in _rules)
             {
-                var result = rule.Evaluate(request, statements);
+                var result = rule.Evaluate(request, bankstatements);
                 if (result != null && result.Status == "Rejected")
                     return result;
 

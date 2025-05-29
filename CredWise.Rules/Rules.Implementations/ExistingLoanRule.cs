@@ -1,11 +1,12 @@
 ﻿using CredWise.Models.Root;
 using CredWise.Rules.Interface;
+using CredWise.Models;
 
 namespace CredWise.Rules.Rules.Implementations
 {
     public class ExistingLoanRule : ILoanRule
     {
-        public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<BankTransaction> bankStatements)
+        public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<Models.BankTransaction> bankStatements)
         {
             if (request.ExistingLoan != null && request.ExistingLoan.IsActive)
             {
@@ -16,7 +17,11 @@ namespace CredWise.Rules.Rules.Implementations
                 };
             }
 
-            return null;
+            return new LoanDecisionResponse
+            {
+                Status = "Approved",
+                Message = "No existing loan found."
+            };
         }
     }
 }

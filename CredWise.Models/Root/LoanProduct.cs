@@ -9,7 +9,8 @@ namespace CredWise.Models.Root
     public class LoanProduct
     {
         public int LoanProductId { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
         public decimal MaxLoanAmount { get; set; }
     }
+
 }

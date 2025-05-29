@@ -1,43 +1,78 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CredWise.Models;
 using CredWise.Services.Interface;
-using CredWise.Models.Root;
-//using CredWise.Services.DummyData;
-using System.Net;
-using Microsoft.Extensions.Logging;
- 
+
 namespace CredWise.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class LoanDecisionController : ControllerBase
+    [Route("api/loan")]
+    public class LoanController : ControllerBase
     {
-        private readonly ILoanDecisionService _loanService;
+        private readonly ILoanDecisionService _loanDecisionService;
+        private readonly IBankStatementService _bankStatementService;
 
-        public LoanDecisionController(ILoanDecisionService loanService)
+        public LoanController(
+            ILoanDecisionService loanDecisionService,
+            IBankStatementService bankStatementService)
         {
-            _loanService = loanService;
+            _loanDecisionService = loanDecisionService;
+            _bankStatementService = bankStatementService;
         }
 
-        [HttpPost("bankstatement")]
-        public IActionResult UploadBankStatement(string userId, [FromBody] List<BankTransaction> transactions)
+        [HttpGet("bank-statements/{customerId}")]
+        public async Task<ActionResult<BankStatement>> GetBankStatements(
+            [FromRoute] string customerId,
+            [FromQuery] string loanApplicationId,
+            [FromQuery] DateTime? startDate = null,
+            [FromQuery] DateTime? endDate = null)
         {
-            _loanService.UploadBankStatement(userId, transactions);
-            return Ok("Bank statement uploaded.");
-        }
+            try
+            {
+                if (string.IsNullOrEmpty(customerId))
+                {
+                    return BadRequest(new { error = "Customer ID is required" });
+                }
 
-        [HttpGet("bankstatement/{userId}")]
-        public IActionResult GetBankStatement(string userId)
-        {
-            var data = _loanService.GetBankStatement(userId);
-            return data.Any() ? Ok(data) : NotFound("No statement found.");
+                if (string.IsNullOrEmpty(loanApplicationId))
+                {
+                    return BadRequest(new { error = "Loan Application ID is required" });
+                }
+
+                var end = endDate ?? DateTime.Now;
+                var start = startDate ?? end.AddMonths(-6);
+
+                if (start > end)
+                {
+                    return BadRequest(new { error = "Start date must be before end date" });
+                }
+
+                var bankStatement = await _bankStatementService.GetBankStatementAsync(customerId, start, end);
+                bankStatement.LoanApplicationId = loanApplicationId;
+                return Ok(bankStatement);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Error retrieving bank statements" });
+            }
         }
 
         [HttpPost("evaluate")]
-        public IActionResult EvaluateLoan([FromBody] LoanApplicationRequest request)
+        public async Task<ActionResult<LoanDecision>> EvaluateLoan([FromBody] LoanRequest request)
         {
-            var result = _loanService.EvaluateLoan(request);
-            return Ok(result);
+            try
+            {
+                if (request == null)
+                {
+                    return BadRequest(new { error = "Invalid request" });
+                }
+
+                var decision = await _loanDecisionService.ProcessLoanRequest(request);
+                return Ok(decision);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "An error occurred while processing your request" });
+            }
         }
     }
 }

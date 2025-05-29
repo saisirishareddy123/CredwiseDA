@@ -5,117 +5,117 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/LoanDecision/bankstatement": {
-      "post": {
-        "tags": [
-          "LoanDecision"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/BankTransaction"
-                }
-              }
-            },
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/BankTransaction"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/BankTransaction"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/BankTransaction"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/LoanDecision/bankstatement/{userId}": {
+    "/api/loan/bank-statements/{customerId}": {
       "get": {
         "tags": [
-          "LoanDecision"
+          "Loan"
         ],
         "parameters": [
           {
-            "name": "userId",
+            "name": "customerId",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "loanApplicationId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankStatement"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankStatement"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankStatement"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/LoanDecision/evaluate": {
+    "/api/loan/evaluate": {
       "post": {
         "tags": [
-          "LoanDecision"
+          "Loan"
         ],
         "requestBody": {
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoanApplicationRequest"
+                "$ref": "#/components/schemas/LoanRequest"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoanApplicationRequest"
+                "$ref": "#/components/schemas/LoanRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoanApplicationRequest"
+                "$ref": "#/components/schemas/LoanRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoanApplicationRequest"
+                "$ref": "#/components/schemas/LoanRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoanDecision"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoanDecision"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoanDecision"
+                }
+              }
+            }
           }
         }
       }
@@ -162,6 +162,27 @@
   },
   "components": {
     "schemas": {
+      "BankStatement": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanApplicationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankTransaction"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BankTransaction": {
         "type": "object",
         "properties": {
@@ -169,43 +190,57 @@
             "type": "string",
             "format": "date-time"
           },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
           "type": {
             "type": "string",
             "nullable": true
           },
-          "amount": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoanDecision": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "approvedAmount": {
             "type": "number",
             "format": "double"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ExistingLoan": {
+      "LoanRequest": {
         "type": "object",
         "properties": {
-          "isActive": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "LoanApplicationRequest": {
-        "type": "object",
-        "properties": {
-          "userId": {
+          "loanApplicationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanType": {
             "type": "string",
             "nullable": true
           },
           "requestedAmount": {
             "type": "number",
             "format": "double"
-          },
-          "loanProductId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "existingLoan": {
-            "$ref": "#/components/schemas/ExistingLoan"
           }
         },
         "additionalProperties": false
