@@ -2,14 +2,13 @@
 using CredWise.Models.Root;
 using System.Collections.Generic;
 using CredWise.Models.Root;
+using CredWise.Models;
+using System.Threading.Tasks;
 
 namespace CredWise.Services.Interface
 {
     public interface ILoanDecisionService
     {
-        LoanDecisionResponse EvaluateLoan(LoanApplicationRequest request);
-        List<BankTransaction> GetBankStatement(string userId);
-
-        void UploadBankStatement(string userId, List<BankTransaction> transactions);
+        Task<LoanDecision> ProcessLoanRequest(LoanRequest request);
     }
 }

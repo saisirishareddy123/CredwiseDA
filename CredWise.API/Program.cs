@@ -1,7 +1,7 @@
 using CredWise.Services.Interface;
-using CredWise.Services.Service.Implementations;
 using CredWise.Rules.Interface;
 using CredWise.Rules.Rules.Implementations;
+using CredWise.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +17,8 @@ builder.Services.AddSingleton<ILoanRule, ExistingLoanRule>();
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IBankStatementService, BankStatementService>();
 
 var app = builder.Build();
 

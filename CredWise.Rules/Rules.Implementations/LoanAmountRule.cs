@@ -14,7 +14,7 @@ namespace CredWise.Rules.Rules.Implementations
             { 3, 2000000 }  // Gold
         };
 
-        public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<BankTransaction> bankStatements)
+        public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<Models.BankTransaction> bankStatements)
         {
             if (!_loanProducts.ContainsKey(request.LoanProductId))
             {
@@ -38,7 +38,7 @@ namespace CredWise.Rules.Rules.Implementations
                 .Select(g => g.Sum(t => t.Amount))
                 .ToList();
 
-            decimal avgMonthlyIncome = last6MonthsCredit.Any() ? last6MonthsCredit.Average() : 0;
+            decimal avgMonthlyIncome = (decimal)(last6MonthsCredit.Count != 0 ? last6MonthsCredit.Average() : 0);
 
             if (avgMonthlyIncome >= expectedEMI)
             {
@@ -66,5 +66,10 @@ namespace CredWise.Rules.Rules.Implementations
                 Message = "Income too low to support any loan."
             };
         }
+
+        //public LoanDecisionResponse Evaluate(LoanApplicationRequest request, List<Models.Root.BankTransaction> statements)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
